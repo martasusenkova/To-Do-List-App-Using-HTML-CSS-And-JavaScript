@@ -22,7 +22,9 @@ Your data is stored in **LocalStorage**, so the list stays saved even after refr
 
 ### 📸 Screenshots
 
-> ![screenshot](images/todo.png) > ![screenshot](images/todo1.png) > ![screenshot](images/todo2.png)
+  <img src="images/todo.png" width="300" alt="To-Do Screenshot 1" />
+  <img src="images/todo1.png" width="300" alt="To-Do Screenshot 2" />
+  <img src="images/todo2.png" width="300" alt="To-Do Screenshot 3" />
 
 ### 📂 How to Use
 
