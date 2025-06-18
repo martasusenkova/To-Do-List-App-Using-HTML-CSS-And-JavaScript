@@ -32,6 +32,51 @@ function handleClick(e) {
   }
 }
 
+// Добавим обработчик двойного клика на список
+listContainer.addEventListener("dblclick", function (e) {
+  if (e.target.tagName === "LI") {
+    const li = e.target;
+    // Создаём поле ввода, которое заменит текст задачи
+    const input = document.createElement("input");
+    input.type = "text";
+    input.value = li.textContent.replace("\u00d7", "").trim(); // Убираем крестик из текста
+
+    // Заменяем содержимое li на input
+    li.textContent = "";
+    li.appendChild(input);
+    input.focus();
+
+    // По окончании редактирования или потере фокуса сохраняем текст обратно
+    function finishEditing() {
+      if (input.value.trim() === "") {
+        alert("Task text can't be empty!");
+        return;
+      }
+      li.textContent = input.value;
+      // Добавляем обратно крестик
+      const span = document.createElement("span");
+      span.innerHTML = "\u00d7";
+      li.appendChild(span);
+
+      saveData();
+    }
+
+    input.addEventListener("blur", finishEditing);
+    input.addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        finishEditing();
+      }
+      if (event.key === "Escape") {
+        // Отмена редактирования — возвращаем старый текст
+        li.textContent = input.value;
+        const span = document.createElement("span");
+        span.innerHTML = "\u00d7";
+        li.appendChild(span);
+      }
+    });
+  }
+});
+
 listContainer.addEventListener("click", handleClick);
 
 function saveData() {
